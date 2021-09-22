@@ -23,7 +23,7 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion my-sidebar" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <div class="sidebar-brand-text mx-3">Dashboard</div>
             </a>
 
@@ -59,7 +59,7 @@
                             </a>
                         </li>
                         <li class="nav-item my-auto logout">
-                            <a href="../index.html" class="my-auto">Logout <i class="fas fa-sign-out-alt"></i></a>
+                            <a href="../index.php" class="my-auto">Logout <i class="fas fa-sign-out-alt"></i></a>
                         </li>
                     </ul>
                 </nav>
