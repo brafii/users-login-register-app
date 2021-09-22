@@ -1,0 +1,80 @@
+:root{
+    --sidebar-color: #404E67;
+}
+
+.bg-gradient-primary {
+    background-color: var(--sidebar-color);
+    background-image: linear-gradient(180deg,#404E67 10%,#404E67 100%);
+    background-size: cover;
+    color: #fff;
+}
+
+.logout a{
+    color: #fff;
+}
+.logout a:hover{
+    text-decoration: none;
+}
+.sidebar-dark .sidebar-brand {
+    background: #2C3E50;
+    color: #fff;
+}
+.bg-white{
+    background-color: #2C3E50 !important;
+}
+#content-wrapper{
+    background-color: #fff !important;
+    color: black;
+}
+.sticky-footer{
+    background-color: #f8f9fa !important;
+    color: #000;
+}
+.text-primary {
+    color: #fff !important;
+}
+table.table-bordered.dataTable {
+    border-right-width: 0;
+    color: black;
+}
+.card-header:first-child {
+    border-radius: calc(.35rem - 1px) calc(.35rem - 1px) 0 0;
+    background: #009688;
+}
+.topbar #sidebarToggleTop {
+    height: 2.5rem;
+    width: 2.5rem;
+    color: #fff;
+}
+
+/* Sidebar Dashboard */
+.report-issue-container{
+    background-color: #e9ecef;
+    border-radius: 5px;
+}
+.report-issue-container .btn-primary{
+    background-color: #0271A4;
+    border-color: #0271A4;
+}
+.btn-primary:hover{
+    background-color: #0271A4;
+    border-color: #0271A4;
+}
+
+/* Send Report */
+.report-issue-container button {
+    background-color: #fff;
+    border: 1px solid #d1d3e2;
+}
+.multi_select_box option{
+    color: #000;
+}
+.report-issue-container span{
+    color: #000;
+}
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #404E67;;
+    border-color: #404E67;;
+}

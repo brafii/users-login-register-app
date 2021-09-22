@@ -1,0 +1,132 @@
+:root{
+    --default-color: #0271a4;
+    --secondary-color: #8b0300;
+}
+
+.navigation a{
+    text-decoration: none;
+    color: #000;
+}
+.side1 p{
+    text-transform: uppercase;
+    font-size: 1.1em;
+}
+.side1 h6{
+    text-transform: uppercase;
+}
+.side2 ul{
+    display: flex;
+}
+.side2 ul li{
+    list-style: none;
+    margin: 1px;
+}
+.side2 ul li a{
+    font-size: .9em;
+    color: #000;
+    text-decoration: none;
+}
+.side2 ul li a:hover{
+    text-decoration: underline;
+}
+.side2 li:after{
+    content: "|";
+    padding: 5px;
+    color: #999;
+}
+.side2 li:last-of-type:after {
+    display: none;
+}
+.section-header p:first-child{
+    color: var(--default-color);
+    font-weight: 600;
+    font-size: 18px;
+}
+.section-header i{
+    margin-right: 6px;
+}
+input[type="text"], input[type="password"]{
+    padding: 10px;
+    border-color: var(--default-color);
+}
+.section form{
+    width: 35%;
+    margin: auto;
+    margin-top: 70px;
+}
+form button{
+    width: 100%;
+}
+.btn-primary {
+    background-color: var(--default-color);
+    border-color: var(--default-color);
+    padding: 9px;
+}
+.section-footer p{
+    color: #34495e;
+    font-size: 1.2em;
+}
+.section-footer p:hover{
+    color: #34495e;
+    font-size: 1.2em;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.section hr{
+    width: 35%;
+    margin: auto;
+    margin-top: 70px;
+    height: 1px;
+    color: var(--default-color);
+}
+.distance-contact p{
+    color: var(--default-color);
+    font-size: 1.2em;
+}
+.distance-contact i{
+    font-size: .8em;
+}
+.footer-end{
+    margin-top: 140px;
+}
+.footer-end p{
+    color: var(--secondary-color);
+    font-size: 1.2em;
+}
+.footer-end ul{
+    padding: 0;
+}
+.footer-end ul li{
+    list-style: none;
+    line-height: 1.8em;
+}
+.footer-end ul li a{
+    color: #000;
+    text-decoration: none;
+}
+.footer-end ul li a:hover{
+    text-decoration: underline;
+}
+
+
+/* Media Query */
+
+/* Small devices (landscape phones, 576px and up) */
+@media only screen and (max-width: 576px) {
+
+    .section form{
+        width: 100%;
+        margin-top: 70px;
+    }
+
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+    
+    .section form{
+        width: 100%;
+        margin-top: 70px;
+    }
+
+}
