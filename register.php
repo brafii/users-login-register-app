@@ -18,7 +18,7 @@
     <!-- Header -->
     <div class="navigation p-3">
         <div class="container d-flex justify-content-between">
-            <a href="index.html"><div class="side1 d-flex">
+            <a href="index.php"><div class="side1 d-flex">
                 <img src="images/knust-logo_reference.jpg">&nbsp;&nbsp;&nbsp;&nbsp;
                 <div class="logo-icon">
                     <p class="mb-1">Kwame Nkrumah University of Science and Technology</p>
