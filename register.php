@@ -3,6 +3,21 @@
       //connection to database
       require_once 'connection/dbconnect.php';
 
+      $errors = ['fullname' => '', 'serial' => '', 'pin' => ''];
+
+      //Registration Logic
+      if($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+        //form validation
+
+        //check for fullname
+        if(empty($_POST['fullname'])){
+          $errors['fullname'] = 'Firstname is required';
+        }
+        print_r($errors);
+
+      }
+
 ?>
 
 
@@ -54,15 +69,15 @@
                 <p class="small">Login with your credentials below</p>
             </div>
 
-            <form action="" method="">
+            <form action="register.php" method="POST">
                 <div class="mb-5">
-                    <input type="text" class="form-control" placeholder="Fullname">
+                    <input type="text" class="form-control" name="fullname" placeholder="Fullname">
                   </div>
                 <div class="mb-5">
-                  <input type="text" class="form-control" placeholder="Login ID / Serial #">
+                  <input type="text" class="form-control" name="serial" placeholder="Login ID / Serial #">
                 </div>
                 <div class="mb-4">
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Pin">
+                  <input type="password" class="form-control" name="pin" id="exampleInputPassword1" placeholder="Pin">
                 </div>
                 
                 <button type="submit" class="btn btn-primary">Register</button>
