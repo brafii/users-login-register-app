@@ -1,3 +1,11 @@
+<?php
+
+      //connection to database
+      require_once 'connection/dbconnect.php';
+
+?>
+
+
 <!doctype html>
 <html lang="en">
   <head>
