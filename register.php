@@ -16,19 +16,72 @@
 
         //check for fullname
         if(empty($_POST['fullname'])){
-          $errors['fullname'] = 'Firstname is required';
+          $errors['fullname'] = 'Fullname is required';
+        }
+        else{
+          $fullname =  htmlspecialchars($_POST['fullname']);
         }
 
         //check for serial
         if(empty($_POST['serial'])){
-          $errors['serial'] = 'Login ID is required';
+          $errors['serial'] = 'Login ID / Serial # is required';
+        }
+        else{
+          $serial = htmlspecialchars($_POST['serial']);
         }
         
         //check for pin
         if(empty($_POST['pin'])){
           $errors['pin'] = 'Pin is required';
         }
+        else{
+          $pin = htmlspecialchars($_POST['pin']);
+        }
         
+
+        //if form is passed
+        if(!array_filter($errors)){
+
+          //check if serial number exits
+          $sql = 'SELECT * FROM usersform WHERE serial=:serial LIMIT 1';
+          $statement = $conn->prepare($sql);
+          $statement->execute(['serial' => $serial]);
+
+          if($statement->rowCount()){
+            $errors['serial'] = 'Login ID / Serial already exits';
+          }
+          else{
+
+            $pin = md5($pin);
+
+            //Insert into the database
+            $sql = 'INSERT INTO usersform(fullname, serial, pin) VALUES(:fullname, :serial, :pin)';
+            $statement = $conn->prepare($sql);
+            $statement->execute([
+              'fullname' => $fullname,
+              'serial' => $serial,
+              'pin' => $pin
+            ]);
+
+            $lastId = $conn->lastInsertId();
+
+            //Select the newly registered user and store in the database
+            $sql = 'SELECT * FROM usersform WHERE id=:id';
+            $statement = $conn->prepare($sql);
+            $run = $statement->execute(['id' => $lastId]);
+            $usersform = $statement->fetch();
+            
+            if($run){
+
+              $_SESSION['usersform'] = $usersform;
+              header('Location: dashboard/index.php');
+
+            }
+
+          }
+          
+
+        }
 
       }
 
@@ -85,13 +138,22 @@
 
             <form action="register.php" method="POST">
                 <div class="mb-5">
-                    <input type="text" class="form-control" name="fullname" placeholder="Fullname">
+                    <input type="text" class="form-control" name="fullname" placeholder="Fullname" value="<?php echo $fullname ?>">
+                    <div class="text-danger">
+                      <?php echo $errors['fullname']; ?>
+                    </div>
                   </div>
                 <div class="mb-5">
-                  <input type="text" class="form-control" name="serial" placeholder="Login ID / Serial #">
+                  <input type="text" class="form-control" name="serial" placeholder="Login ID / Serial #" value="<?php echo $serial ?>">
+                  <div class="text-danger">
+                      <?php echo $errors['serial']; ?>
+                  </div>
                 </div>
                 <div class="mb-4">
-                  <input type="password" class="form-control" name="pin" id="exampleInputPassword1" placeholder="Pin">
+                  <input type="password" class="form-control" name="pin" id="exampleInputPassword1" placeholder="Pin" value="<?php echo $pin ?>">
+                  <div class="text-danger">
+                      <?php echo $errors['pin']; ?>
+                  </div>
                 </div>
                 
                 <button type="submit" class="btn btn-primary">Register</button>

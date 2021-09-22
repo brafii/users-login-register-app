@@ -1,3 +1,18 @@
+<?php
+
+
+    //connection to database
+    require_once '../connection/dbconnect.php';
+
+    if(isset($_SESSION['usersform'])){
+        $usersform = $_SESSION['usersform'];
+        echo $usersform['fullname'];
+    }
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

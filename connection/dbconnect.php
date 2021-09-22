@@ -13,4 +13,6 @@
         echo "Connection failed: " . $e->getMessage();
     }
 
+    session_start();
+
 ?>
