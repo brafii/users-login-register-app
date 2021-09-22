@@ -16,6 +16,16 @@
         }
         print_r($errors);
 
+        //check for serial
+        if(empty($_POST['serial'])){
+          $errors['serial'] = 'Login ID is required';
+        }
+
+        //check for pin
+        if(empty($_POST['pin'])){
+          $errors['pin'] = 'Pin is required';
+        }
+
       }
 
 ?>
