@@ -5,6 +5,10 @@
 
       $errors = ['fullname' => '', 'serial' => '', 'pin' => ''];
 
+      $fullname = '';
+      $serial = '';
+      $pin = '';
+
       //Registration Logic
       if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
@@ -14,17 +18,17 @@
         if(empty($_POST['fullname'])){
           $errors['fullname'] = 'Firstname is required';
         }
-        print_r($errors);
 
         //check for serial
         if(empty($_POST['serial'])){
           $errors['serial'] = 'Login ID is required';
         }
-
+        
         //check for pin
         if(empty($_POST['pin'])){
           $errors['pin'] = 'Pin is required';
         }
+        
 
       }
 
