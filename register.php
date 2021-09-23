@@ -85,6 +85,10 @@
 
       }
 
+      if(isset($_SESSION['usersform'])){
+        header('Location: dashboard/index.php');
+      }
+
 ?>
 
 

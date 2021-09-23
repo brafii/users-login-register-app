@@ -3,11 +3,23 @@
 
     //connection to database
     require_once '../connection/dbconnect.php';
+if(!isset($_SESSION['usersform'])){
+        header('Location: ../index.php');
+      }
+
+    
+    $usersform = '';
 
     if(isset($_SESSION['usersform'])){
         $usersform = $_SESSION['usersform'];
-        echo $usersform['fullname'];
     }
+    // else{
+    //     header('Location: ../index.php');
+    // }
+
+    // if(isset($_SESSION['usersform'])){
+    //     header('Location: ../index.php');
+    //   }
 
 
 ?>
@@ -45,7 +57,7 @@
             <div class="sb-sidenav-menu-heading text-center mt-4">
                 <img src="img/profile-avatar.jpg" class="img-fluid rounded-circle mb-3" width="130" height="130">
                 <p class="small mb-1">Logged in as:</p>
-                <p>Kwame Doe</p>
+                <p><?php echo $usersform['fullname'] ?></p>
             </div>
 
         </ul>
@@ -74,7 +86,10 @@
                             </a>
                         </li>
                         <li class="nav-item my-auto logout">
-                            <a href="../index.php" class="my-auto">Logout <i class="fas fa-sign-out-alt"></i></a>
+
+                            <?php if(isset($_SESSION['usersform'])) : ?>
+                                <a href="../index.php" class="my-auto">Logout <i class="fas fa-sign-out-alt"></i></a>
+                            <?php endif; ?>
                         </li>
                     </ul>
                 </nav>

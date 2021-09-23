@@ -1,3 +1,65 @@
+<?php
+
+    //connection to database
+    require_once 'connection/dbconnect.php';
+
+    $errors = ['serial' => '', 'pin' => ''];
+
+    $serial = '';
+    $pin = '';
+
+    //Registration Logic
+    if($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+      //form validation
+
+      //check for serial
+      if(empty($_POST['serial'])){
+        $errors['serial'] = 'Login ID / Serial # is required';
+      }
+      else{
+        $serial = htmlspecialchars($_POST['serial']);
+      }
+      
+      //check for pin
+      if(empty($_POST['pin'])){
+        $errors['pin'] = 'Pin is required';
+      }
+      else{
+        $pin = htmlspecialchars($_POST['pin']);
+      }
+      
+
+      //if form is passed
+      if(!array_filter($errors)){
+
+        $pin = md5($pin);
+
+        //check if serial number exits
+        $sql = 'SELECT * FROM usersform WHERE serial=:serial AND pin=:pin LIMIT 1';
+        $statement = $conn->prepare($sql);
+        $statement->execute([
+          'serial' => $serial,
+          'pin' => $pin
+        ]);     
+
+        $usersform = $statement->fetch();
+        
+        if($statement->rowCount()){
+          $_SESSION['usersform'] = $usersform;
+          header('Location: dashboard/index.php');
+        }
+
+      }
+
+    }
+
+    if(isset($_SESSION['usersform'])){
+      header('Location: dashboard/index.php');
+    }
+
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -46,12 +108,18 @@
                 <p class="small">Login with your credentials below</p>
             </div>
 
-            <form action="" method="">
+            <form action="index.php" method="POST">
                 <div class="mb-5">
-                  <input type="text" class="form-control" placeholder="Login ID / Serial #">
+                  <input type="text" class="form-control" placeholder="Login ID / Serial #" name="serial">
+                  <div class="text-danger">
+                      <?php echo $errors['serial']; ?>
+                  </div>
                 </div>
                 <div class="mb-4">
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Pin">
+                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Pin" name="pin">
+                  <div class="text-danger">
+                      <?php echo $errors['pin']; ?>
+                  </div>
                 </div>
                 
                 <button type="submit" class="btn btn-primary">Log in</button>
